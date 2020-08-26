@@ -20,35 +20,33 @@ public class BaseTest {
 	protected Properties cloudProperties = new Properties();
 	public SeeTestClient seetest;
 	protected RemoteWebDriver driver = null;
+	protected String deviceQuery = null;
 
 
 	public void init(String deviceQuery) throws Exception {
+		this.deviceQuery = deviceQuery;
 		initCloudProperties();
 		String adhocDeviceQuery = System.getenv("deviceQuery");
 		if (adhocDeviceQuery != null) {
 			System.out.println("[INFO] Redirecting test to the current device.");
 			deviceQuery = adhocDeviceQuery;
 		}
-		dc.setCapability("deviceQuery", deviceQuery);
 		dc.setCapability("reportDirectory", "reports");
 		dc.setCapability("reportFormat", "xml");
 		String accessKey = getProperty("accessKey", cloudProperties);
 		if (accessKey != null && !accessKey.isEmpty()) {
 			dc.setCapability("accessKey", accessKey);
-		} else {
-			dc.setCapability("user", getProperty("username", cloudProperties));
-			dc.setCapability("password", getProperty("password", cloudProperties));
 		}
-		// In case your user is assign to a single project leave empty,
-		// otherwise please specify the project name
-//		dc.setCapability("project", getProperty("project", cloudProperties));
 	}
 
-	public RemoteWebDriver getDriver(String query) throws MalformedURLException {
-		if(query == null){
-			query = dc.getCapability("deviceQuery").toString();
+	public RemoteWebDriver getDriver(String query, String testName) throws MalformedURLException {
+		if(testName != null){
+			dc.setCapability("testName", "OurCoffeeNavigate");
 		}
-		if(query.startsWith("desktop:")){
+		if(query == null){
+			query = deviceQuery;
+		}
+		if(query.startsWith("desktop:")){ // desktop:chrome:85.0.4183.48:any
 			dc.setCapability("deviceQuery", (String)null);
 			dc.setCapability(CapabilityType.BROWSER_NAME, query.split(":")[1]);
 			dc.setCapability(CapabilityType.VERSION, query.split(":")[2]);

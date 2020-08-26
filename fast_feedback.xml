@@ -9,7 +9,7 @@
   </test>
   <test name="Test-class test2" >
     <classes>
-      <parameter name="devicequery" value="ios:@os='ios'">
+      <parameter name="devicequery" value="ios:@os='ios' and @category='PHONE'">
         <class name="com.experitest.auto.OurCoffeeTest" />
       </parameter>
     </classes>

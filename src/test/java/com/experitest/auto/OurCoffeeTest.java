@@ -33,12 +33,16 @@ public class OurCoffeeTest extends BaseTest {
 	
 	@Test
 	public void navigate() throws Exception {
-		dc.setCapability("testName", "OurCoffeeNavigate");
-		getDriver(null);
+		getDriver(null, "OurCoffeeNavigate");
 		seetest = new SeeTestClient(driver);
 
 		driver.findElement(By.xpath("//*[text()='About Us']")).click();
+		seetest.startPerformanceTransaction("");
 		driver.findElement(By.xpath("//*[text()='Our Coffee']")).click();
+		//The Best Coffee. Starbucks Coffee Finder.
+		WebDriverWait wait = new WebDriverWait(driver, 20, 100);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text()='The Best Coffee. Starbucks Coffee Finder.']")));
+		seetest.endPerformanceTransaction("OurCoffee");
 	}
 
 	@AfterMethod
