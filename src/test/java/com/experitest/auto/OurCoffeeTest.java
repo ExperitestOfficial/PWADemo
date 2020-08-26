@@ -37,11 +37,15 @@ public class OurCoffeeTest extends BaseTest {
 		seetest = new SeeTestClient(driver);
 
 		driver.findElement(By.xpath("//*[text()='About Us']")).click();
+		if(mobile)
 		seetest.startPerformanceTransaction("");
+
 		driver.findElement(By.xpath("//*[text()='Our Coffee']")).click();
-		//The Best Coffee. Starbucks Coffee Finder.
+
 		WebDriverWait wait = new WebDriverWait(driver, 20, 100);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text()='The Best Coffee. Starbucks Coffee Finder.']")));
+
+		if(mobile)
 		seetest.endPerformanceTransaction("OurCoffee");
 	}
 

@@ -21,6 +21,7 @@ public class BaseTest {
 	public SeeTestClient seetest;
 	protected RemoteWebDriver driver = null;
 	protected String deviceQuery = null;
+	protected boolean mobile = false;
 
 
 	public void init(String deviceQuery) throws Exception {
@@ -54,9 +55,11 @@ public class BaseTest {
 
 			driver = new RemoteWebDriver(new URL(getProperty("url",cloudProperties) + "/wd/hub"), dc);
 		} else if(query.startsWith("android:")){
+			mobile = true;
 			dc.setCapability("deviceQuery", query.split(":")[1]);
 			driver = new AndroidDriver<>(new URL(getProperty("url",cloudProperties) + "/wd/hub"), dc);
 		} else if(query.startsWith("ios:")){
+			mobile = true;
 			dc.setCapability("deviceQuery", query.split(":")[1]);
 			driver = new IOSDriver<>(new URL(getProperty("url",cloudProperties) + "/wd/hub"), dc);
 		} else {
