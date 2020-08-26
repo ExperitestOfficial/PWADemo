@@ -46,7 +46,7 @@ pipeline {
         stage('Appium') {
           steps {
             powershell 'copy C:\\Userdata\\cloud.properties .'
-            powershell 'set GRADLE_USER_HOME="c:\\Program Files (x86)\\gradle-5.6.1";set path="%GRADLE_USER_HOME%\\bin;%path%";gradle test'
+            powershell 'set GRADLE_USER_HOME="c:\\Program Files (x86)\\gradle-5.6.1";set path="%GRADLE_USER_HOME%\\bin;%path%";gradle clean test --rerun-tasks'
           }
         }
 
