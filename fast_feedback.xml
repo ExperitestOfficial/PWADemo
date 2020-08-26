@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test-class Suite" parallel="tests" thread-count="20" >
+  <test name="Test-class test1" >
+    <classes>
+      <parameter name="devicequery" value="android:@os='android'">
+      <class name="com.experitest.auto.OurCoffeeTest" />
+      </parameter>
+    </classes>
+  </test>
+  <test name="Test-class test2" >
+    <classes>
+      <parameter name="devicequery" value="ios:@os='ios'">
+        <class name="com.experitest.auto.OurCoffeeTest" />
+      </parameter>
+    </classes>
+  </test>
+  <test name="Test-class test3" >
+    <classes>
+      <parameter name="devicequery" value="desktop:chrome:85.0.4183.48:any'">
+        <class name="com.experitest.auto.OurCoffeeTest" />
+      </parameter>
+    </classes>
+  </test>
+  <test name="Test-class test4" >
+    <classes>
+      <parameter name="devicequery" value="desktop:firefox:79.0:any'">
+        <class name="com.experitest.auto.OurCoffeeTest" />
+      </parameter>
+    </classes>
+  </test>
+
+</suite>
